@@ -1,4 +1,6 @@
 #include <stdio.h>
+
+
 int main()
 {
     int coordenada[2], partida, destino, i = 0;
