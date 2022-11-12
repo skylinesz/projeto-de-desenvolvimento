@@ -27,4 +27,53 @@ int main()
     {
         printf("Classificacao invalida");
     }
+    if ("%c", usuario == 'M')
+    {
+        printf("horario que pretende partir\n");
+        for (i = 0; i<2; i++)
+        {
+          
+            if (i == 0)
+            {
+            
+                printf("horas: ");
+                scanf("%d", &H[j][i]);
+            }
+            else
+            {
+                printf("minutos: ");
+                scanf("%d", &H[j][i]);
+            }
+        }
+    }
+
+
+    if ("%c", usuario == 'P')
+    {
+        printf("horario que deseja partir\n");
+        for (i = 0; i<2; i++)
+        {
+          
+            if (i == 0)
+            {
+            
+                printf("horas: ");
+                scanf("%d", &H[j][i]);
+            }
+            else
+            {
+                printf("minutos: ");
+                scanf("%d", &H[j][i]);
+            }
+        }
+    }
+    
+    
+    for (i = 0; i<2; i++)
+    {
+        for (j = 0; j<1; j++)
+        {
+            printf("%d ", H[j][i]);
+        }
+    }
 }
