@@ -12,7 +12,7 @@ int main()
         i++;
         printf("selecione local de destino\n1 -> Contagem\n2 -> Para de Minas\n3 -> Juatuba\n4 -> Belo Horizonte\n5 -> Betim\n6 -> Florestal\n");
         scanf("%d", &m[i]);
-        printf("final da placa do veiculo: ");
+        printf("digite os 2 ultimos numeros da placa do veiculo: ");
         scanf("%d", &H[j][2]);
         j++;
     }
