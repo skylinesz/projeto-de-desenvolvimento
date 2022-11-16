@@ -9,9 +9,19 @@ int main()
     {
         printf("selecione local de partida\n1 -> Contagem\n2 -> Para de Minas\n3 -> Juatuba\n4 -> Belo Horizonte\n5 -> Betim\n6 -> Florestal\n");
         scanf("%d", &m[i]);
+        if (m[i] > 6 || m[i] < 1)
+        {
+            printf("local invalido");
+            return 0;
+        }
         i++;
         printf("selecione local de destino\n1 -> Contagem\n2 -> Para de Minas\n3 -> Juatuba\n4 -> Belo Horizonte\n5 -> Betim\n6 -> Florestal\n");
         scanf("%d", &m[i]);
+        if (m[i] > 6 || m[i] < 1)
+        {
+            printf("local invalido");
+            return 0;
+        }
         printf("digite os 2 ultimos numeros da placa do veiculo: ");
         scanf("%d", &H[j][2]);
         j++;
@@ -20,9 +30,19 @@ int main()
     {
         printf("selecione local de partida\n1 -> Contagem\n2 -> Para de Minas\n3 -> Juatuba\n4 -> Belo Horizonte\n5 -> Betim\n6 -> Florestal\n");
         scanf("%d", &p[i]);
+        if (p[i] > 6 || p[i] < 1)
+        {
+            printf("local invalido");
+            return 0;
+        }
         i++;
         printf("selecione local de destino\n1 -> Contagem\n2 -> Para de Minas\n3 -> Juatuba\n4 -> Belo Horizonte\n5 -> Betim\n6 -> Florestal\n");
         scanf("%d", &p[i]);
+        if (p[i] > 6 || p[i] < 1)
+        {
+            printf("local invalido");
+            return 0;
+        }
     }
     else
     {
