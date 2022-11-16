@@ -1,7 +1,7 @@
 #include <stdio.h>
 int main()
 {
-    int p[2], partida, destino, i = 0, m[2], j=0, H[3][3];
+    int p[2], i = 0, m[2], j=0, H[3][3];
     char usuario;
     printf("Classificacao do usuario\nM = motorista P = passageiro: ");
     scanf("%c", &usuario);
@@ -70,7 +70,7 @@ int main()
         }
 
     }
-
+    
 
     if ("%c", usuario == 'P')
     {
@@ -91,13 +91,35 @@ int main()
             }
         }
     }
-    
-    printf("H  M  placa\n");
-    for (i = 0; i<3; i++)
+    p[0] = 2;
+    p[1] = 5;
+    if ("%c", usuario == 'M')
     {
-        for (j = 0; j<1; j++)
+        if (m[0] == p[0]);
         {
-            printf("%d ", H[j][i]);
+            if(m[1] == p[1])
+            {
+                printf("viagens compativeis:\n");
+                printf("H  M  placa\n");
+                for (i = 0; i<3; i++)
+                {
+                    for (j = 0; j<1; j++)
+                    {
+                        printf("%d ", H[j][i]);
+                    }
+                }
+            }
+        }
+    }
+
+    if ("%c", usuario == 'P')
+    {
+        if (p[0] == m[0]);
+        {
+            if(p[1] == m[1])
+            {
+                printf("viagens compativeis:\n");
+            }
         }
     }
 }
