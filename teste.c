@@ -1,7 +1,20 @@
 #include <stdio.h>
+#include <stdlib.h>
+typedef struct conducao tipoConducao;
+struct conducao
+{
+    char cor[30], placa[7], carro[30], motorista[30];
+};
+typedef struct carona tipoCarona;
+struct carona
+{
+    char nome[30];
+};
 int main()
 {
-    int p[2], i = 0, m[2], j=0, H[3][3];
+    tipoConducao conducao;
+    tipoCarona carona;
+    int p[2], i = 0, m[2], j=0, H[2][2];
     char usuario;
     printf("Classificacao do usuario\nM = motorista P = passageiro: ");
     scanf("%c", &usuario);
@@ -22,9 +35,18 @@ int main()
             printf("local invalido");
             return 0;
         }
-        printf("digite os 2 ultimos numeros da placa do veiculo: ");
-        scanf("%d", &H[j][2]);
-        j++;
+        printf("digite a placa do veiculo: ");
+        fflush(stdin);
+        gets(conducao.placa);
+        printf("digite o modelo do veiculo: ");
+        fflush(stdin);
+        gets(conducao.carro);
+        printf("digite a cor do veiculo: ");
+        fflush(stdin);
+        gets(conducao.cor);
+        printf("digite seu nome: ");
+        fflush(stdin);
+        gets(conducao.motorista);
     }
     else if ("%c", usuario == 'P')
     {
@@ -43,6 +65,9 @@ int main()
             printf("local invalido");
             return 0;
         }
+        printf("digite seu nome: ");
+        fflush(stdin);
+        gets(carona.nome);
     }
     else
     {
@@ -100,8 +125,8 @@ int main()
             if(m[1] == p[1])
             {
                 printf("viagens compativeis:\n");
-                printf("H  M  placa\n");
-                for (i = 0; i<3; i++)
+                printf("H  M \n");
+                for (i = 0; i<2; i++)
                 {
                     for (j = 0; j<1; j++)
                     {
