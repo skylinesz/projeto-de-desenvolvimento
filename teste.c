@@ -4,63 +4,85 @@ typedef struct conducao tipoConducao;
 struct conducao
 {
     char cor[30], placa[7], carro[30], motorista[30];
+    int local[2], telefoneM;
 };
 typedef struct carona tipoCarona;
 struct carona
 {
-    char nome[30];
+    char nome[30], local[2];
+    int telefoneP
 };
 int main()
 {
-    tipoConducao conducao;
-    tipoCarona carona;
-    int p[2], i = 0, m[2], j=0, H[2][2];
-    char usuario;
+    tipoConducao conducao, *m;
+    tipoCarona carona, *c;
+    FILE *arqP;
+    FILE *arqM;
+    m = &conducao;
+    c = &carona;
+    int i=0, count=0;
+    char usuario, j;
     printf("Classificacao do usuario\nM = motorista P = passageiro: ");
     scanf("%c", &usuario);
-    if ("%c", usuario == 'M')
+    if (usuario == 'M')
     {
         printf("selecione local de partida\n1 -> Contagem\n2 -> Para de Minas\n3 -> Juatuba\n4 -> Belo Horizonte\n5 -> Betim\n6 -> Florestal\n");
-        scanf("%d", &m[i]);
-        if (m[i] > 6 || m[i] < 1)
+        scanf("%d", &conducao.local[0]);
+        if (conducao.local[0] > 6 || conducao.local[0] < 1)
         {
             printf("local invalido");
             return 0;
         }
-        i++;
         printf("selecione local de destino\n1 -> Contagem\n2 -> Para de Minas\n3 -> Juatuba\n4 -> Belo Horizonte\n5 -> Betim\n6 -> Florestal\n");
-        scanf("%d", &m[i]);
-        if (m[i] > 6 || m[i] < 1)
+        scanf("%d", &conducao.local[1]);
+        if (conducao.local[1] > 6 || conducao.local[1] < 1)
         {
             printf("local invalido");
             return 0;
         }
-        printf("digite a placa do veiculo: ");
-        fflush(stdin);
-        gets(conducao.placa);
-        printf("digite o modelo do veiculo: ");
-        fflush(stdin);
-        gets(conducao.carro);
-        printf("digite a cor do veiculo: ");
-        fflush(stdin);
-        gets(conducao.cor);
-        printf("digite seu nome: ");
-        fflush(stdin);
-        gets(conducao.motorista);
+        else
+        {
+            printf("digite a placa do veiculo: ");
+            fflush(stdin);
+            gets(conducao.placa);
+            printf("digite o modelo do veiculo: ");
+            fflush(stdin);
+            gets(conducao.carro);
+            printf("digite a cor do veiculo: ");
+            fflush(stdin);
+            gets(conducao.cor);
+            printf("digite seu nome: ");
+            fflush(stdin);
+            gets(conducao.motorista);
+            printf("digite seu numero de telefone para contato(somente numeros): ");
+            scanf("%d", &conducao.telefoneM);
+            arqM = fopen("dadosM.dat", "a+b");
+            if (arqM == NULL)
+            {
+                printf("não foi possivel abrir o arquivo\n");
+                return 0;
+            }
+            else
+            {
+                fwrite(m, sizeof(tipoConducao), 1, arqM);
+            }
+            fclose(arqM);
+        }
+
     }
-    else if ("%c", usuario == 'P')
+    else if (usuario == 'P')
     {
         printf("selecione local de partida\n1 -> Contagem\n2 -> Para de Minas\n3 -> Juatuba\n4 -> Belo Horizonte\n5 -> Betim\n6 -> Florestal\n");
-        scanf("%d", &p[i]);
-        if (p[i] > 6 || p[i] < 1)
+        scanf("%d", &carona.local[0]);
+        if (carona.local[0] > 6 || carona.local[0] < 1)
         {
             printf("local invalido");
             return 0;
         }
         i++;
         printf("selecione local de destino\n1 -> Contagem\n2 -> Para de Minas\n3 -> Juatuba\n4 -> Belo Horizonte\n5 -> Betim\n6 -> Florestal\n");
-        scanf("%d", &p[i]);
-        if (p[i] > 6 || p[i] < 1)
+        scanf("%d", &carona.local[1]);
+        if (carona.local[1] > 6 || carona.local[1] < 1)
         {
             printf("local invalido");
             return 0;
@@ -68,82 +90,55 @@ int main()
         printf("digite seu nome: ");
         fflush(stdin);
         gets(carona.nome);
+        printf("digite seu numero de telefone para contato(somente numeros): ");
+        scanf("%d", &carona.telefoneP);
+        arqP = fopen("dadosP.dat", "a+b");
+        if (arqP == NULL)
+        {
+            printf("não foi possivel abrir o arquivo\n");
+            return 0;
+        }
+        else
+        {
+            fwrite(c, sizeof(tipoCarona), 1, arqP);
+        }
+        fclose(arqP);
     }
     else
     {
         printf("Classificacao invalida");
+        return 0;
     }
 
-    j = 0;
-    if ("%c", usuario == 'M')
+   
+    printf("viagens compativeis\n--------------------------\n");
+    if (usuario == 'M')
     {
-        printf("horario que pretende partir\n");
-        for (i = 0; i<2; i++)
+        arqP = fopen("dadosP.dat", "rb");
+        while (fread(&carona, sizeof(carona), 1, arqP) >0)
         {
-          
-            if (i == 0)
-            {
-            
-                printf("horas: ");
-                scanf("%d", &H[j][i]);
-            }
-            else
-            {
-                printf("minutos: ");
-                scanf("%d", &H[j][i]);
-            }
-        }
 
-    }
-    
-
-    if ("%c", usuario == 'P')
-    {
-        printf("horario que deseja partir\n");
-        for (i = 0; i<2; i++)
-        {
-          
-            if (i == 0)
+            if (conducao.local[0] == carona.local[0])
             {
-            
-                printf("horas: ");
-                scanf("%d", &H[j][i]);
-            }
-            else
-            {
-                printf("minutos: ");
-                scanf("%d", &H[j][i]);
-            }
-        }
-    }
-    p[0] = 2;
-    p[1] = 5;
-    if ("%c", usuario == 'M')
-    {
-        if (m[0] == p[0]);
-        {
-            if(m[1] == p[1])
-            {
-                printf("viagens compativeis:\n");
-                printf("H  M \n");
-                for (i = 0; i<2; i++)
+                if (conducao.local[1] == carona.local[1])
                 {
-                    for (j = 0; j<1; j++)
-                    {
-                        printf("%d ", H[j][i]);
-                    }
+                    printf("passageiro -> %s\ntelefone -> %d\n--------------------------\n", carona.nome, carona.telefoneP);
                 }
             }
         }
+        fclose(arqP);
     }
-
-    if ("%c", usuario == 'P')
+    if (usuario == 'P')
     {
-        if (p[0] == m[0]);
+        arqM = fopen("dadosM.dat", "rb");
+        while (fread(&conducao, sizeof(conducao), 1, arqM) >0)
         {
-            if(p[1] == m[1])
+            if (carona.local[0] == conducao.local[0]);
             {
-                printf("viagens compativeis:\n");
+                if(carona.local[1] == conducao.local[1])
+                {
+                    printf("carro -> %s, %s\nplaca -> %s\nmotorista -> %s\ntelefone -> %d\n--------------------------\n", conducao.carro, conducao.cor, conducao.placa, conducao.motorista, conducao.telefoneM);
+                }
             }
         }
     }
