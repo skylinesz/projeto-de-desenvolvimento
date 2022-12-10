@@ -1,18 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 typedef struct conducao tipoConducao;
 struct conducao
 {
-    char cor[30], placa[7], carro[30], motorista[30];
+    char cor[30], placa[8], carro[30], motorista[30];
     int local[2], telefoneM;
 };
+
+
 typedef struct carona tipoCarona;
 struct carona
 {
     char nome[30], local[2];
     int telefoneP
 };
-int main()
+
+
+void main()
 {
     tipoConducao conducao, *m;
     tipoCarona carona, *c;
@@ -22,8 +27,12 @@ int main()
     c = &carona;
     int i=0, count=0;
     char usuario, j;
+
+
+    printf("bem vindo!\nescolha uma classificacao para iniciar...\n");
     printf("Classificacao do usuario\nM = motorista P = passageiro: ");
     scanf("%c", &usuario);
+    
     if (usuario == 'M')
     {
         printf("selecione local de partida\n1 -> Contagem\n2 -> Para de Minas\n3 -> Juatuba\n4 -> Belo Horizonte\n5 -> Betim\n6 -> Florestal\n");
@@ -65,11 +74,13 @@ int main()
             else
             {
                 fwrite(m, sizeof(tipoConducao), 1, arqM);
+                printf("registro bem sucedido\n");
             }
             fclose(arqM);
         }
-
     }
+    
+    
     else if (usuario == 'P')
     {
         printf("selecione local de partida\n1 -> Contagem\n2 -> Para de Minas\n3 -> Juatuba\n4 -> Belo Horizonte\n5 -> Betim\n6 -> Florestal\n");
@@ -101,9 +112,12 @@ int main()
         else
         {
             fwrite(c, sizeof(tipoCarona), 1, arqP);
+            printf("registro bem sucedido\n");
         }
         fclose(arqP);
     }
+
+
     else
     {
         printf("Classificacao invalida");
@@ -128,6 +142,8 @@ int main()
         }
         fclose(arqP);
     }
+    
+    
     if (usuario == 'P')
     {
         arqM = fopen("dadosM.dat", "rb");
